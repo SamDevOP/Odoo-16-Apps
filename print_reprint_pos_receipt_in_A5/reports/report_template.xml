@@ -1,0 +1,110 @@
+<odoo>
+    <data>
+        <template id="reprint_receipt_order">
+            
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="receipt">
+                    <t t-call="web.external_layout">
+                        
+                            <!-- <div class="pos-receipt">
+                                <t t-if="receipt.company_id.logo">
+                                    <img class="pos-receipt-logo" t-att-src="image_data_uri(receipt.company_id.logo)" alt="Logo"/>
+                                    <br/>
+                                </t> -->
+
+                                <style>
+                                    body {
+                                        font-family: Arial, sans-serif;
+                                        margin: 0;
+                                        padding: 0;
+                                    }
+                                    .receipt {
+                                        width: 210mm;
+                                        height: 148mm;
+                                        margin: auto;
+                                        padding: 20px;
+                                        box-sizing: border-box;
+                                        border: 1px solid #000;
+                                    }
+                                    .logo {
+                                        text-align: center;
+                                    }
+                                    .logo img {
+                                        max-width: 150px;
+                                    }
+                                    .receipt-info {
+                                        margin-top: 20px;
+                                    }
+                                    .receipt-info p {
+                                        margin: 5px 0;
+                                    }
+                                    
+                                </style>
+                            
+                            <div class="page">
+                                <div class="receipt" style="padding-top:0px;">
+                                    <div class="logo">
+                                        <img class="pos-receipt-logo" t-att-src="image_data_uri(receipt.company_id.logo)" alt="Logo"/>
+                                    </div>
+                                    <div class="receipt-info">
+                                        <p>Date: February 7, 2024</p>
+                                        <p>Receipt #: 123456</p>
+                                        <p>Customer: John Doe</p>
+                                    </div>
+                                    <table class="table table-sm o_main_table ">
+                                        <thead>
+                                            <tr style="color:black;">
+                                                <th class="text-left">Item</th>
+                                                <th>Quantity</th>
+                                                <th>Price</th>
+                                                <th>Subtotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="invoice_tbody">
+                                            <t t-foreach="receipt.get_order_details()['items']" t-as="receipt_data">
+                                                <tr>
+                                                    <td><span t-esc="receipt_data.get('full_product_name')"/></td>
+                                                    <td class="text-center"><span t-esc="receipt_data.get('qty')"/></td>
+                                                    <td class="text-center"><span t-esc="receipt_data.get('price_unit')"/></td>
+                                                    <td class="text-center"><span t-esc="receipt_data.get('price_subtotal')"/></td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                    <div class="clearfix mb-4">
+                                        <div id="total" class="row">
+                                            <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
+                                                <table class="table table-sm text-right" style="page-break-inside: avoid;">
+                                                    <tr>
+                                                        <td>Tax:</td>
+                                                        <td><span t-esc="receipt.get_order_details()['amount_tax']"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Total:</td>
+                                                        <td><span t-esc="receipt.get_order_details()['amount_total']"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Paid:</td>
+                                                        <td><span t-esc="receipt.get_order_details()['amount_paid']"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Change:</td>
+                                                        <td><span t-esc="receipt.get_order_details()['amount_paid'] - receipt.get_order_details()['amount_total']"/></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                       
+                            
+                       
+                
+                    
+                </t>
+            </t>
+        </t>
+        </template>
+    </data>
+</odoo>

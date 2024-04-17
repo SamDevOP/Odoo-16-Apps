@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+
+
+        <report
+            id="print_reprint_receipt_order"
+            model="pos.order"
+            string="Reprint receipt"
+            report_type="qweb-pdf"
+            name="print_reprint_pos_receipt_in_A5.reprint_receipt_order"
+            file="print_reprint_pos_receipt_in_A5.reprint_receipt_order"
+            menu = "True"
+        />
+
+
+    </data>
+</odoo>
